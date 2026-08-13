@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.pnpm-store/
+.wrangler/
+.claude/
+*.tgz
+*.tar.gz
