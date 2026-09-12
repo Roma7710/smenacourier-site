@@ -15,6 +15,9 @@
   <meta name="twitter:title" content="СМЕНА — находите курьеров, получайте за результат">
   <meta name="twitter:description" content="Без взносов, с обучением и прозрачным учётом кандидатов.">
   <meta name="twitter:image" content="/og.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="assets/styles.css">
   <script>document.documentElement.classList.add('js')</script>
@@ -41,45 +44,63 @@
 
   <main>
     <header class="hero" id="top">
-      <div class="wrap hero__grid">
-        <div class="hero__copy">
-          <div class="status"><i></i> Открыт набор в 26 городах</div>
-          <h1>Находите курьеров. <em>Получайте за результат.</em></h1>
-          <p class="hero__lead">Удалённая партнёрская программа для тех, кто умеет находить людей и общаться. Вы приводите кандидата в сервис доставки — мы платим, когда он выходит на заказы.</p>
-          <div class="hero__actions">
-            <a class="button button--accent" href="#form">Разобраться и начать <span>→</span></a>
-            <a class="text-link" href="#calc">Посчитать доход <span>↓</span></a>
-          </div>
-          <p class="hero__fine">Без взносов и покупки курса · договор · выплаты дважды в месяц</p>
+      <div class="wrap hero-poster">
+        <div class="poster-tape">
+          <b>СМЕНА</b>
+          <span>партнёрская программа</span>
         </div>
 
-        <div class="route-card" aria-label="Схема получения вознаграждения">
-          <div class="route-card__top">
-            <span>Маршрут вознаграждения</span>
-            <span class="route-card__tag">4 шага</span>
+        <div class="hero-poster__grid">
+          <div class="hero__copy">
+            <div class="status"><i></i> Открыт набор в 26 городах</div>
+            <h1><span>Находите курьеров.</span><span>Получайте</span><span>за результат.</span></h1>
+            <p class="hero__lead">Вы находите человека, помогаете ему зарегистрироваться в сервисе доставки и получаете вознаграждение, когда он выходит на заказы.</p>
+            <div class="hero__actions">
+              <a class="button button--accent" href="#form">Разобраться и начать <span>→</span></a>
+              <a class="text-link" href="#calc">Посчитать доход <span>↓</span></a>
+            </div>
           </div>
-          <ol class="route">
-            <li>
-              <i>1</i>
-              <span><b>Нашли кандидата</b><small>объявление, чат или рекомендация</small></span>
-              <span class="route__state">вы</span>
-            </li>
-            <li>
-              <i>2</i>
-              <span><b>Помогли зарегистрироваться</b><small>кандидат закрепился за вами</small></span>
-              <span class="route__state">онлайн</span>
-            </li>
-            <li>
-              <i>3</i>
-              <span><b>Курьер вышел на заказы</b><small>система считает его активность</small></span>
-              <span class="route__state route__state--live">в работе</span>
-            </li>
-          </ol>
-          <div class="route-result">
-            <span><small>Вознаграждение за курьера</small><b>до 58 000 ₽</b></span>
-            <span class="route-result__arrow">↗</span>
+
+          <aside class="poster-reward month-example" aria-label="Пример месяца партнёра">
+            <div class="month-example__head">
+              <span>Пример месяца партнёра</span>
+              <i aria-hidden="true"></i>
+            </div>
+            <div class="month-example__rows">
+              <div><span>Привлечено кандидатов</span><b>8</b></div>
+              <div><span>Вышли на заказы</span><b>6</b></div>
+              <div><span>Средняя выплата за курьера</span><b>32 500 ₽</b></div>
+              <div><span>Работы в неделю</span><b>≈ 10 ч</b></div>
+            </div>
+            <div class="month-example__total">
+              <span>Доход за месяц<small>условный пример</small></span>
+              <b>195 000 ₽</b>
+            </div>
+            <p>Не гарантия дохода: результат зависит от города, числа кандидатов и их активности.</p>
+          </aside>
+        </div>
+
+        <div class="poster-route" aria-label="Три шага до вознаграждения">
+          <div class="poster-route__steps">
+            <div class="poster-step">
+              <span class="engraving engraving--one" aria-hidden="true"></span>
+              <b>Найти человека</b>
+              <small>объявление или рекомендация</small>
+            </div>
+            <span class="poster-path" aria-hidden="true">→</span>
+            <div class="poster-step">
+              <span class="engraving engraving--two" aria-hidden="true"></span>
+              <b>Помочь со стартом</b>
+              <small>регистрация и первые шаги</small>
+            </div>
+            <span class="poster-path" aria-hidden="true">→</span>
+            <div class="poster-step">
+              <span class="engraving engraving--three" aria-hidden="true"></span>
+              <b>Получить выплату</b>
+              <small>после выполненных заказов</small>
+            </div>
           </div>
-          <p>Верхняя сумма — при 100 заказах за первые 20 дней. Фактическая выплата зависит от города и активности курьера.</p>
+          <p class="hero__fine">Верхняя сумма — при 100 заказах за первые 20 дней. Фактическая выплата зависит от города и активности курьера.</p>
         </div>
       </div>
 
@@ -310,10 +331,6 @@
             <span><i>✓</i> Заявка ни к чему не обязывает</span>
             <span><i>✓</i> Данные — только для связи</span>
           </div>
-          <div class="founder">
-            <span>РО</span>
-            <p><b>Роман Орехов</b><small>основатель программы «СМЕНА»</small></p>
-          </div>
         </div>
 
         <div class="lead-card reveal">
@@ -367,6 +384,10 @@
           <span class="brand__name">СМЕНА<small>партнёрская программа</small></span>
         </a>
         <p>Подбор курьеров для сервисов доставки в 26 городах России.</p>
+        <div class="footer__requisites">
+          <b>ИП Орехова Александра Денисовна</b>
+          <span>ОГРНИП 323385000018091</span>
+        </div>
       </div>
       <div>
         <span class="footer__label">Навигация</span>
@@ -379,10 +400,6 @@
         <span class="footer__label">Документы</span>
         <button type="button" data-dialog="privacy">Конфиденциальность</button>
         <button type="button" data-dialog="rules">Правила программы</button>
-      </div>
-      <div>
-        <span class="footer__label">Реквизиты</span>
-        <p>ИП Орехов Роман Евгеньевич<br>ИНН 380131479509<br>ОГРНИП 322385000032605</p>
       </div>
     </div>
     <div class="wrap footer__bottom">
