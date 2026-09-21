@@ -1,7 +1,13 @@
 node_modules/
 dist/
+dist-pages/
+dist-reg-ru/
 .pnpm-store/
 .wrangler/
 .claude/
+.codex-*.log
+tmp/
+work-test/
+smenacourier-reg-ru.zip
 *.tgz
 *.tar.gz
