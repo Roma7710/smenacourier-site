@@ -12,7 +12,7 @@ export function siteDetails(mode) {
   if (leadEndpoint && new URL(leadEndpoint).protocol !== 'https:') {
     throw new Error('LEAD_ENDPOINT must use HTTPS');
   }
-  const telegram = new URL('https://t.me/linkonhrr');
+  const telegram = new URL('https://t.me/Roman77work');
   telegram.searchParams.set('text', 'Хочу стать партнёром');
 
   const values = {
