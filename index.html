@@ -321,11 +321,28 @@
     </section>
 
     <section class="partner-section" id="form" aria-labelledby="partner-heading">
-      <div class="wrap partner-card">
-        <h2 id="partner-heading">Стать партнёром</h2>
-        <p class="partner-card__description">Ответим в течение дня, расскажем условия и пришлём материалы</p>
-        <a class="button button--accent button--wide" href="%SMENA_TELEGRAM_URL%">Написать в Telegram</a>
-        <p class="partner-card__handle">@%SMENA_TELEGRAM_USERNAME%</p>
+      <div class="wrap partner-section__grid">
+        <div class="partner-copy">
+          <span class="partner-copy__label">СВЯЗАТЬСЯ</span>
+          <h2 id="partner-heading">Напишите нам в Telegram — откроем доступ к обучению</h2>
+          <p>Ответим в течение рабочего дня, расскажем про условия и заведём личный кабинет. Обращение ни к чему не обязывает.</p>
+          <ul class="partner-copy__list" role="list">
+            <li>Обучение и материалы — бесплатно, без предоплат</li>
+            <li>Общаемся в удобном вам мессенджере</li>
+            <li>Отвечает живой человек, а не бот</li>
+            <li>Никакого спама — пишем только по делу</li>
+          </ul>
+        </div>
+        <div class="partner-card">
+          <span class="partner-card__icon" aria-hidden="true"><span class="telegram-plane"></span></span>
+          <h3>Написать в Telegram</h3>
+          <p class="partner-card__description">Нажмите кнопку — откроется чат. Напишите «Хочу стать партнёром», и мы ответим в течение рабочего дня.</p>
+          <a class="button button--wide partner-card__button" href="%SMENA_TELEGRAM_URL%">
+            <span class="telegram-plane" aria-hidden="true"></span>
+            Открыть чат @%SMENA_TELEGRAM_USERNAME%
+          </a>
+          <p class="partner-card__handle">Или найдите нас в поиске Telegram: <strong>@%SMENA_TELEGRAM_USERNAME%</strong></p>
+        </div>
       </div>
     </section>
   </main>
