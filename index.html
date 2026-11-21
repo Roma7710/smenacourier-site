@@ -2,22 +2,21 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>СМЕНА — партнёрская программа по подбору курьеров</title>
   <meta name="description" content="Находите кандидатов для сервисов доставки и получайте вознаграждение за тех, кто вышел на заказы. Без взносов, с обучением и поддержкой.">
-  <meta name="theme-color" content="#f4f2ea">
+  <meta name="theme-color" content="#f2f0e7">
   <meta property="og:type" content="website">
   <meta property="og:title" content="СМЕНА — находите курьеров, получайте за результат">
   <meta property="og:description" content="Удалённая партнёрская программа: обучение, готовые материалы и прозрачный учёт кандидатов.">
-  <meta property="og:image" content="/og.png">
+  <meta property="og:image" content="https://smenacourier.ru/og.jpg">
   <meta property="og:image:alt" content="СМЕНА — находите курьеров и получайте до 58 000 рублей за результат">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="СМЕНА — находите курьеров, получайте за результат">
   <meta name="twitter:description" content="Без взносов, с обучением и прозрачным учётом кандидатов.">
-  <meta name="twitter:image" content="/og.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+  <meta name="twitter:image" content="https://smenacourier.ru/og.jpg">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="assets/styles.css">
   <script>document.documentElement.classList.add('js')</script>
@@ -34,6 +33,7 @@
         <a href="#start">Как начать</a>
         <a href="#calc">Калькулятор</a>
         <a href="#faq">Вопросы</a>
+        <a class="button button--dark nav__mobile-cta" href="#form">Стать партнёром</a>
       </div>
       <a class="button button--small button--dark nav__cta" href="#form">Стать партнёром <span>↗</span></a>
       <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
@@ -56,7 +56,7 @@
             <h1><span>Находите курьеров.</span><span>Получайте</span><span>за результат.</span></h1>
             <p class="hero__lead">Вы находите человека, помогаете ему зарегистрироваться в сервисе доставки и получаете вознаграждение, когда он выходит на заказы.</p>
             <div class="hero__actions">
-              <a class="button button--accent" href="#form">Разобраться и начать <span>→</span></a>
+              <a class="button button--accent" href="#form">Стать партнёром</a>
               <a class="text-link" href="#calc">Посчитать доход <span>↓</span></a>
             </div>
           </div>
@@ -83,19 +83,19 @@
         <div class="poster-route" aria-label="Три шага до вознаграждения">
           <div class="poster-route__steps">
             <div class="poster-step">
-              <span class="engraving engraving--one" aria-hidden="true"></span>
+              <span class="engraving engraving--one" aria-hidden="true"><img src="/step-find.webp" width="380" height="380" alt="" loading="lazy" decoding="async"></span>
               <b>Найти человека</b>
               <small>объявление или рекомендация</small>
             </div>
             <span class="poster-path" aria-hidden="true">→</span>
             <div class="poster-step">
-              <span class="engraving engraving--two" aria-hidden="true"></span>
+              <span class="engraving engraving--two" aria-hidden="true"><img src="/step-start.webp" width="380" height="380" alt="" loading="lazy" decoding="async"></span>
               <b>Помочь со стартом</b>
               <small>регистрация и первые шаги</small>
             </div>
             <span class="poster-path" aria-hidden="true">→</span>
             <div class="poster-step">
-              <span class="engraving engraving--three" aria-hidden="true"></span>
+              <span class="engraving engraving--three" aria-hidden="true"><img src="/step-pay.webp" width="380" height="380" alt="" loading="lazy" decoding="async"></span>
               <b>Получить выплату</b>
               <small>после выполненных заказов</small>
             </div>
@@ -196,8 +196,8 @@
         <div class="toolkit__copy reveal">
           <span class="eyebrow eyebrow--light">Всё для старта</span>
           <h2>Не курс ради курса. <em>Рабочий набор.</em></h2>
-          <p>Семь коротких модулей, готовые материалы и человек, которому можно задать вопрос. Доступ остаётся у вас.</p>
-          <a class="button button--light" href="#form">Получить доступ <span>→</span></a>
+          <p>Четыре модуля, готовые материалы и человек, которому можно задать вопрос. Доступ остаётся у вас.</p>
+          <a class="button button--light" href="#form">Стать партнёром</a>
         </div>
         <div class="toolkit__list reveal">
           <div><span>01</span><b>Готовые тексты вакансий</b><small>под разные площадки и города</small></div>
@@ -325,7 +325,7 @@
         <div class="lead-section__copy reveal">
           <span class="eyebrow eyebrow--light">Заявка</span>
           <h2>Начните с <em>короткого знакомства</em></h2>
-          <p>Сначала напишем в мессенджер, ответим на вопросы и договоримся об удобном времени. Никаких внезапных звонков.</p>
+          <p>Напишите нам в Telegram или оставьте контакт. Ответим на вопросы и договоримся об удобном времени.</p>
           <div class="lead-points">
             <span><i>✓</i> Ответим в течение рабочего дня</span>
             <span><i>✓</i> Заявка ни к чему не обязывает</span>
@@ -334,43 +334,39 @@
         </div>
 
         <div class="lead-card reveal">
-          <div class="lead-card__head">
-            <h3>Стать партнёром</h3>
-            <span>≈ 1 минута</span>
+          <div id="lead-entry">
+            <div class="lead-card__head"><h3>Стать партнёром</h3></div>
+            <a class="button button--accent button--wide telegram-button" href="%SMENA_TELEGRAM_URL%">Написать в Telegram</a>
+            <p class="lead-divider">или оставьте номер — перезвоним</p>
+            <noscript><p>Для отправки через форму включите JavaScript или напишите нам в Telegram.</p></noscript>
+            <form id="lead" data-endpoint="%SMENA_LEAD_ENDPOINT%" method="post" novalidate hidden>
+              <div class="field">
+                <label for="fname">Имя</label>
+                <input id="fname" name="name" class="control" type="text" autocomplete="given-name" maxlength="80" aria-describedby="fname-error" required>
+                <p class="field-error" id="fname-error" hidden></p>
+              </div>
+              <div class="field">
+                <label for="fphone">Телефон или ник в Telegram</label>
+                <input id="fphone" name="phone" class="control" type="tel" inputmode="tel" autocomplete="tel" autocapitalize="none" spellcheck="false" maxlength="32" aria-describedby="fphone-error" placeholder="+7 900 000-00-00 или @username" required>
+                <button class="contact-mode" id="contact-mode" type="button" aria-controls="fphone">Ввести ник Telegram</button>
+                <p class="field-error" id="fphone-error" hidden></p>
+              </div>
+              <label class="agree" for="fagree">
+                <input type="checkbox" id="fagree" name="consent" aria-describedby="fagree-error" required>
+                <span>Согласен на обработку персональных данных</span>
+              </label>
+              <p class="field-error" id="fagree-error" hidden></p>
+              <button class="consent-link" type="button" data-dialog="consent">Текст согласия</button>
+              <div class="form-msg form-msg--error" id="err" role="alert" hidden></div>
+              <button type="submit" class="button button--accent button--wide" id="btn">Отправить заявку</button>
+              <p class="form-foot" id="telegram-draft-note" hidden>Подтвердите отправку сообщения в Telegram.</p>
+              <p class="form-foot">Отправляя форму, вы не подписываетесь на рассылку.</p>
+            </form>
           </div>
-          <div class="form-msg form-msg--error" id="err" role="alert"></div>
-          <div class="form-msg form-msg--ok" id="ok" role="status"></div>
-          <form id="lead" novalidate>
-            <div class="field">
-              <label for="fname">Как к вам обращаться?</label>
-              <input id="fname" name="name" class="control" type="text" autocomplete="name" placeholder="Имя" required>
-            </div>
-            <div class="field">
-              <label for="fphone">Телефон или ник в мессенджере</label>
-              <input id="fphone" name="phone" class="control" type="text" autocomplete="tel" placeholder="+7 900 000-00-00 или @username" required>
-            </div>
-            <div class="field-row">
-              <div class="field">
-                <label for="fcity">Ваш город</label>
-                <select id="fcity" name="city" class="control" required></select>
-              </div>
-              <div class="field">
-                <label for="fexp">Опыт</label>
-                <select id="fexp" name="experience" class="control">
-                  <option>Без опыта</option>
-                  <option>HR / рекрутинг</option>
-                  <option>Партнёрские программы</option>
-                  <option>Своя аудитория</option>
-                </select>
-              </div>
-            </div>
-            <label class="agree">
-              <input type="checkbox" id="fagree">
-              <span>Согласен на обработку данных по <button type="button" data-dialog="privacy">условиям конфиденциальности</button>.</span>
-            </label>
-            <button type="submit" class="button button--accent button--wide" id="btn" disabled>Отправить заявку <span>→</span></button>
-            <p class="form-foot">Отправляя форму, вы не подписываетесь на рассылку.</p>
-          </form>
+          <div class="lead-success" id="ok" hidden>
+            <h3 tabindex="-1">Спасибо, напишем в течение рабочего дня</h3>
+            <a class="button button--accent button--wide telegram-button" href="%SMENA_TELEGRAM_URL%">Написать в Telegram</a>
+          </div>
         </div>
       </div>
     </section>
@@ -385,8 +381,8 @@
         </a>
         <p>Подбор курьеров для сервисов доставки в 26 городах России.</p>
         <div class="footer__requisites">
-          <b>ИП Орехова Александра Денисовна</b>
-          <span>ОГРНИП 323385000018091</span>
+          <b>%SMENA_OPERATOR_NAME%</b>
+          <span>ОГРНИП %SMENA_OPERATOR_OGRNIP% · ИНН %SMENA_OPERATOR_INN%</span>
         </div>
       </div>
       <div>
@@ -399,6 +395,7 @@
       <div>
         <span class="footer__label">Документы</span>
         <button type="button" data-dialog="privacy">Конфиденциальность</button>
+        <button type="button" data-dialog="consent">Согласие на обработку данных</button>
         <button type="button" data-dialog="rules">Правила программы</button>
       </div>
     </div>
@@ -411,22 +408,35 @@
   <dialog class="legal" id="privacy">
     <button class="legal__close" type="button" data-close aria-label="Закрыть">×</button>
     <span class="eyebrow">Документ</span>
-    <h2>Условия обработки данных</h2>
-    <p>Оператор — ИП Орехов Роман Евгеньевич, ИНН 380131479509. Через форму собираются имя, контакт для связи, город и сведения об опыте.</p>
-    <p>Данные используются только для ответа на заявку и обсуждения участия в партнёрской программе. Они не публикуются и не передаются третьим лицам, кроме случаев, необходимых для исполнения закона или подключения выбранного владельцем сайта сервиса приёма заявок.</p>
+    <h2>Политика обработки персональных данных</h2>
+    <p>Оператор — %SMENA_OPERATOR_NAME%, ОГРНИП %SMENA_OPERATOR_OGRNIP%, ИНН %SMENA_OPERATOR_INN%. Через форму собираются имя и контакт для связи — номер телефона или ник в Telegram.</p>
+    <p>Данные используются для ответа на заявку и обсуждения участия в партнёрской программе. Если вы отправляете сообщение через Telegram, оператор получает его в личном чате.</p>
     <p>Согласие можно отозвать, сообщив об этом в том же канале, через который с вами связались. После отзыва данные удаляются, если их хранение не требуется по закону.</p>
+  </dialog>
+
+  <dialog class="legal" id="consent">
+    <button class="legal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <span class="eyebrow">Документ</span>
+    <h2>Согласие на обработку персональных данных</h2>
+    <p>Отмечая поле в форме и отправляя заявку, я даю согласие оператору %SMENA_OPERATOR_NAME%, ОГРНИП %SMENA_OPERATOR_OGRNIP%, ИНН %SMENA_OPERATOR_INN%, на обработку моего имени и указанного контакта для ответа на заявку и обсуждения участия в партнёрской программе.</p>
+    <p>Согласие распространяется на сбор, запись, хранение, использование и удаление этих данных. Я могу отозвать согласие, обратившись к оператору через <a href="%SMENA_TELEGRAM_URL%">Telegram</a> или в канале, в котором со мной связались.</p>
   </dialog>
 
   <dialog class="legal" id="rules">
     <button class="legal__close" type="button" data-close aria-label="Закрыть">×</button>
     <span class="eyebrow">Основные условия</span>
     <h2>Правила программы</h2>
+    <p>Организатор программы — %SMENA_OPERATOR_NAME%, ОГРНИП %SMENA_OPERATOR_OGRNIP%, ИНН %SMENA_OPERATOR_INN%.</p>
     <p>Участие бесплатно. Вознаграждение начисляется за кандидатов, закреплённых за партнёром и выполнивших условия актуального тарифа в личном кабинете.</p>
     <p>Ставки зависят от города и могут пересматриваться. Выплата за регистрацию без выполненных заказов не начисляется. Финальные условия сотрудничества фиксируются в договоре с партнёром.</p>
     <p>Информация на сайте объясняет механику программы и не является публичной офертой или гарантией дохода.</p>
   </dialog>
 
-  <button class="to-top" id="up" type="button" aria-label="Наверх">↑</button>
+  <div class="mobile-actions" id="mobile-actions" aria-label="Связь с командой">
+    <a class="button button--accent telegram-button" href="%SMENA_TELEGRAM_URL%">Написать в Telegram</a>
+    <a class="button button--dark" href="#form">Заявка</a>
+  </div>
+  <button class="to-top" id="up" type="button" aria-label="Наверх" hidden>↑</button>
   <script type="module" src="assets/app.js"></script>
 </body>
 </html>

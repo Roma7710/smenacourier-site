@@ -1,3 +1,5 @@
+import { normalizedContact, validName } from './lead-data.js';
+
 const CITIES = [
   ['Москва', 580, 58000],
   ['Санкт-Петербург', 555, 55500],
@@ -27,8 +29,6 @@ const CITIES = [
   ['Барнаул', 378, 37800]
 ];
 
-// Укажите URL обработчика формы перед публикацией.
-const LEAD_ENDPOINT = window.LEAD_ENDPOINT || '';
 const $ = id => document.getElementById(id);
 const rub = value => `${value.toLocaleString('ru-RU')} ₽`;
 
@@ -42,13 +42,10 @@ function plural(value, one, few, many) {
 }
 
 const citySelect = $('city');
-const formCity = $('fcity');
 
 CITIES.forEach(([name, , cap], index) => {
   citySelect.add(new Option(`${name} · до ${rub(cap)}`, index));
-  formCity.add(new Option(name, name));
 });
-formCity.add(new Option('Другой город', 'Другой город'));
 
 const couriers = $('couriers');
 const orders = $('orders');
@@ -92,85 +89,146 @@ const successMessage = $('ok');
 const nameInput = $('fname');
 const contactInput = $('fphone');
 const agreement = $('fagree');
+const contactMode = $('contact-mode');
+const leadEndpoint = form.dataset.endpoint;
+let telegramInput = false;
+let lastSubmission;
 
-const validName = value => value.trim().length >= 2;
-const validContact = value => (value.match(/\d/g) || []).length >= 7 || /^@[a-zA-Z0-9_.]{3,}$/.test(value.trim());
-
-function validateFormState() {
-  submitButton.disabled = !(validName(nameInput.value) && validContact(contactInput.value) && agreement.checked);
+if (!leadEndpoint) {
+  submitButton.textContent = 'Открыть заявку в Telegram';
+  $('telegram-draft-note').hidden = false;
 }
 
-[nameInput, contactInput].forEach(element => element.addEventListener('input', validateFormState));
-agreement.addEventListener('change', validateFormState);
-
-function showMessage(element, text) {
-  element.textContent = text;
-  element.style.display = 'block';
+function useTelegramInput(enabled) {
+  telegramInput = enabled;
+  contactInput.type = enabled ? 'text' : 'tel';
+  contactInput.inputMode = enabled ? 'text' : 'tel';
+  contactInput.autocomplete = enabled ? 'off' : 'tel';
+  contactInput.placeholder = enabled ? '@username' : '+7 900 000-00-00 или @username';
+  contactMode.textContent = enabled ? 'Ввести номер телефона' : 'Ввести ник Telegram';
 }
+
+contactMode.addEventListener('click', () => {
+  useTelegramInput(!telegramInput);
+  contactInput.value = telegramInput ? '@' : '';
+  setFieldError(contactInput, '');
+  contactInput.focus();
+});
+
+contactInput.addEventListener('input', event => {
+  const value = contactInput.value;
+  if (value.trimStart().startsWith('@')) {
+    useTelegramInput(true);
+    return;
+  }
+  if (telegramInput || !/^(?:\+7|[78])?[\d ()-]+$/.test(value) || event.inputType?.startsWith('delete')) return;
+
+  const digits = value.replace(/\D/g, '');
+  if (!digits) return;
+  const hasPrefix = /^[78]/.test(digits);
+  const number = hasPrefix ? digits.slice(1) : digits;
+  if (number.length > 10) return;
+
+  const caret = contactInput.selectionStart;
+  const digitsBeforeCaret = value.slice(0, caret).replace(/\D/g, '').length + Number(!hasPrefix);
+  const blocks = [number.slice(0, 3), number.slice(3, 6), number.slice(6, 8), number.slice(8)];
+  const local = blocks.slice(1).filter(Boolean).join('-');
+  const formatted = ['+7', blocks[0], local].filter(Boolean).join(' ');
+  if (value === formatted) return;
+  contactInput.value = formatted;
+  if (caret !== value.length && digitsBeforeCaret) {
+    const digit = [...formatted.matchAll(/\d/g)][digitsBeforeCaret - 1];
+    if (digit) contactInput.setSelectionRange(digit.index + 1, digit.index + 1);
+  }
+});
+
+function setFieldError(field, message) {
+  const detail = $(field.getAttribute('aria-describedby'));
+  detail.textContent = message;
+  detail.hidden = !message;
+  if (message) field.setAttribute('aria-invalid', 'true');
+  else field.removeAttribute('aria-invalid');
+}
+
+[nameInput, contactInput, agreement].forEach(field => {
+  field.addEventListener('input', () => setFieldError(field, ''));
+});
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
-  errorMessage.style.display = 'none';
-  successMessage.style.display = 'none';
+  if (submitButton.disabled) return;
+  errorMessage.hidden = true;
 
-  if (!validName(nameInput.value)) {
-    showMessage(errorMessage, 'Укажите имя — хотя бы два символа.');
-    nameInput.focus();
+  const name = nameInput.value.trim();
+  const phone = normalizedContact(contactInput.value);
+  const fields = [
+    [nameInput, validName(name) ? '' : 'Укажите имя — хотя бы два символа.'],
+    [contactInput, phone ? '' : 'Укажите номер с кодом +7 или ник в формате @username.'],
+    [agreement, agreement.checked ? '' : 'Подтвердите согласие на обработку данных.']
+  ];
+  fields.forEach(([field, message]) => setFieldError(field, message));
+  const firstInvalid = fields.find(([, message]) => message);
+  if (firstInvalid) {
+    firstInvalid[0].focus();
     return;
   }
 
-  if (!validContact(contactInput.value)) {
-    showMessage(errorMessage, 'Укажите телефон или ник в формате @username.');
-    contactInput.focus();
+  if (!leadEndpoint) {
+    const draft = new URL($('lead-entry').querySelector('.telegram-button').href);
+    draft.searchParams.set('text', `Хочу стать партнёром\nИмя: ${name}\nКонтакт: ${phone}`);
+    location.assign(draft.href);
     return;
   }
 
-  if (!agreement.checked) {
-    showMessage(errorMessage, 'Подтвердите согласие на обработку данных.');
-    agreement.focus();
-    return;
+  if (lastSubmission?.name !== name || lastSubmission?.phone !== phone) {
+    const id = Array.from(crypto.getRandomValues(new Uint8Array(16)), byte =>
+      byte.toString(16).padStart(2, '0')
+    ).join('');
+    lastSubmission = { id, name, phone, consent: true };
   }
-
-  const data = Object.fromEntries(new FormData(form).entries());
   submitButton.disabled = true;
-  submitButton.firstChild.textContent = 'Отправляем ';
+  submitButton.textContent = 'Отправляем…';
+  form.setAttribute('aria-busy', 'true');
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12_000);
 
   try {
-    if (!LEAD_ENDPOINT) {
-      console.info('Демо-режим. Заявка не отправлена:', data);
-      await new Promise(resolve => setTimeout(resolve, 350));
-      showMessage(successMessage, 'Форма проверена. Сейчас сайт работает локально, поэтому для реальной отправки нужно подключить канал приёма заявок.');
-      submitButton.firstChild.textContent = 'Форма проверена ';
-      submitButton.disabled = false;
-      return;
-    }
-
-    const response = await fetch(LEAD_ENDPOINT, {
+    const response = await fetch(leadEndpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       },
-      body: JSON.stringify({
-        ...data,
-        page: location.href,
-        sentAt: new Date().toISOString()
-      })
+      body: JSON.stringify(lastSubmission),
+      signal: controller.signal,
+      redirect: 'error'
     });
 
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const contentType = response.headers.get('Content-Type') || '';
+    if (!response.ok || contentType.includes('text/html')) throw new Error('Delivery failed');
+    if (contentType.includes('application/json') && response.status !== 204) {
+      const result = await response.json();
+      if (result?.ok === false || result?.success === false) throw new Error('Delivery failed');
+    }
 
-    showMessage(successMessage, 'Заявка отправлена. Напишем вам в мессенджер в течение рабочего дня.');
     form.reset();
-    submitButton.firstChild.textContent = 'Отправлено ';
-  } catch (error) {
-    console.error(error);
-    showMessage(errorMessage, 'Не получилось отправить заявку. Попробуйте ещё раз немного позже.');
-    submitButton.firstChild.textContent = 'Отправить заявку ';
+    lastSubmission = undefined;
+    $('lead-entry').hidden = true;
+    successMessage.hidden = false;
+    successMessage.querySelector('h3').focus({ preventScroll: true });
+    successMessage.scrollIntoView({ block: 'center', behavior: 'instant' });
+  } catch {
+    errorMessage.textContent = 'Не удалось подтвердить отправку. Попробуйте ещё раз или напишите нам в Telegram.';
+    errorMessage.hidden = false;
   } finally {
-    validateFormState();
+    clearTimeout(timeout);
+    submitButton.disabled = false;
+    submitButton.textContent = 'Отправить заявку';
+    form.removeAttribute('aria-busy');
   }
 });
+
+form.hidden = false;
 
 const nav = $('nav');
 const burger = $('burger');
@@ -228,11 +286,22 @@ if ('IntersectionObserver' in window) {
 }
 
 const toTop = $('up');
+const leadSection = $('form');
+const mobileActions = $('mobile-actions');
 toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-addEventListener('scroll', () => {
+function updateFixedControls() {
+  const bounds = leadSection.getBoundingClientRect();
+  const nearForm = bounds.top < innerHeight && bounds.bottom > 0;
   nav.classList.toggle('scrolled', scrollY > 12);
-  toTop.classList.toggle('show', scrollY > 850);
-}, { passive: true });
+  const showTop = scrollY > 850 && !nearForm;
+  toTop.hidden = !showTop;
+  toTop.classList.toggle('show', showTop);
+  mobileActions.hidden = nearForm;
+}
+
+addEventListener('scroll', updateFixedControls, { passive: true });
+addEventListener('resize', updateFixedControls);
+updateFixedControls();
 
 $('year').textContent = new Date().getFullYear();
