@@ -320,54 +320,12 @@
       </div>
     </section>
 
-    <section class="section lead-section" id="form">
-      <div class="wrap lead-section__grid">
-        <div class="lead-section__copy reveal">
-          <span class="eyebrow eyebrow--light">Заявка</span>
-          <h2>Начните с <em>короткого знакомства</em></h2>
-          <p>Напишите нам в Telegram или оставьте контакт. Ответим на вопросы и договоримся об удобном времени.</p>
-          <div class="lead-points">
-            <span><i>✓</i> Ответим в течение рабочего дня</span>
-            <span><i>✓</i> Заявка ни к чему не обязывает</span>
-            <span><i>✓</i> Данные — только для связи</span>
-          </div>
-        </div>
-
-        <div class="lead-card reveal">
-          <div id="lead-entry">
-            <div class="lead-card__head"><h3>Стать партнёром</h3></div>
-            <a class="button button--accent button--wide telegram-button" href="%SMENA_TELEGRAM_URL%">Написать в Telegram</a>
-            <p class="lead-divider">или оставьте номер — перезвоним</p>
-            <noscript><p>Для отправки через форму включите JavaScript или напишите нам в Telegram.</p></noscript>
-            <form id="lead" data-endpoint="%SMENA_LEAD_ENDPOINT%" method="post" novalidate hidden>
-              <div class="field">
-                <label for="fname">Имя</label>
-                <input id="fname" name="name" class="control" type="text" autocomplete="given-name" maxlength="80" aria-describedby="fname-error" required>
-                <p class="field-error" id="fname-error" hidden></p>
-              </div>
-              <div class="field">
-                <label for="fphone">Телефон или ник в Telegram</label>
-                <input id="fphone" name="phone" class="control" type="tel" inputmode="tel" autocomplete="tel" autocapitalize="none" spellcheck="false" maxlength="32" aria-describedby="fphone-error" placeholder="+7 900 000-00-00 или @username" required>
-                <button class="contact-mode" id="contact-mode" type="button" aria-controls="fphone">Ввести ник Telegram</button>
-                <p class="field-error" id="fphone-error" hidden></p>
-              </div>
-              <label class="agree" for="fagree">
-                <input type="checkbox" id="fagree" name="consent" aria-describedby="fagree-error" required>
-                <span>Согласен на обработку персональных данных</span>
-              </label>
-              <p class="field-error" id="fagree-error" hidden></p>
-              <button class="consent-link" type="button" data-dialog="consent">Текст согласия</button>
-              <div class="form-msg form-msg--error" id="err" role="alert" hidden></div>
-              <button type="submit" class="button button--accent button--wide" id="btn">Отправить заявку</button>
-              <p class="form-foot" id="telegram-draft-note" hidden>Подтвердите отправку сообщения в Telegram.</p>
-              <p class="form-foot">Отправляя форму, вы не подписываетесь на рассылку.</p>
-            </form>
-          </div>
-          <div class="lead-success" id="ok" hidden>
-            <h3 tabindex="-1">Спасибо, напишем в течение рабочего дня</h3>
-            <a class="button button--accent button--wide telegram-button" href="%SMENA_TELEGRAM_URL%">Написать в Telegram</a>
-          </div>
-        </div>
+    <section class="partner-section" id="form" aria-labelledby="partner-heading">
+      <div class="wrap partner-card">
+        <h2 id="partner-heading">Стать партнёром</h2>
+        <p class="partner-card__description">Ответим в течение дня, расскажем условия и пришлём материалы</p>
+        <a class="button button--accent button--wide" href="%SMENA_TELEGRAM_URL%">Написать в Telegram</a>
+        <p class="partner-card__handle">@%SMENA_TELEGRAM_USERNAME%</p>
       </div>
     </section>
   </main>
@@ -395,7 +353,6 @@
       <div>
         <span class="footer__label">Документы</span>
         <button type="button" data-dialog="privacy">Конфиденциальность</button>
-        <button type="button" data-dialog="consent">Согласие на обработку данных</button>
         <button type="button" data-dialog="rules">Правила программы</button>
       </div>
     </div>
@@ -409,17 +366,9 @@
     <button class="legal__close" type="button" data-close aria-label="Закрыть">×</button>
     <span class="eyebrow">Документ</span>
     <h2>Политика обработки персональных данных</h2>
-    <p>Оператор — %SMENA_OPERATOR_NAME%, ОГРНИП %SMENA_OPERATOR_OGRNIP%, ИНН %SMENA_OPERATOR_INN%. Через форму собираются имя и контакт для связи — номер телефона или ник в Telegram.</p>
-    <p>Данные используются для ответа на заявку и обсуждения участия в партнёрской программе. Если вы отправляете сообщение через Telegram, оператор получает его в личном чате.</p>
+    <p>Оператор — %SMENA_OPERATOR_NAME%, ОГРНИП %SMENA_OPERATOR_OGRNIP%, ИНН %SMENA_OPERATOR_INN%.</p>
+    <p>Данные используются для ответа на заявку и обсуждения участия в партнёрской программе. Если вы отправляете сообщение через <a href="%SMENA_TELEGRAM_URL%">Telegram</a>, оператор получает его в личном чате.</p>
     <p>Согласие можно отозвать, сообщив об этом в том же канале, через который с вами связались. После отзыва данные удаляются, если их хранение не требуется по закону.</p>
-  </dialog>
-
-  <dialog class="legal" id="consent">
-    <button class="legal__close" type="button" data-close aria-label="Закрыть">×</button>
-    <span class="eyebrow">Документ</span>
-    <h2>Согласие на обработку персональных данных</h2>
-    <p>Отмечая поле в форме и отправляя заявку, я даю согласие оператору %SMENA_OPERATOR_NAME%, ОГРНИП %SMENA_OPERATOR_OGRNIP%, ИНН %SMENA_OPERATOR_INN%, на обработку моего имени и указанного контакта для ответа на заявку и обсуждения участия в партнёрской программе.</p>
-    <p>Согласие распространяется на сбор, запись, хранение, использование и удаление этих данных. Я могу отозвать согласие, обратившись к оператору через <a href="%SMENA_TELEGRAM_URL%">Telegram</a> или в канале, в котором со мной связались.</p>
   </dialog>
 
   <dialog class="legal" id="rules">
@@ -433,7 +382,7 @@
   </dialog>
 
   <div class="mobile-actions" id="mobile-actions" aria-label="Связь с командой">
-    <a class="button button--accent telegram-button" href="%SMENA_TELEGRAM_URL%">Написать в Telegram</a>
+    <a class="button button--accent" href="%SMENA_TELEGRAM_URL%">Написать в Telegram</a>
     <a class="button button--dark" href="#form">Заявка</a>
   </div>
   <button class="to-top" id="up" type="button" aria-label="Наверх" hidden>↑</button>

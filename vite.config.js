@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import { siteDetails } from './site.config.js';
 
-export default defineConfig(async ({ mode }) => {
+export default defineConfig(async () => {
   process.env.WRANGLER_WRITE_LOGS ??= 'false';
   process.env.WRANGLER_LOG_PATH ??= '.wrangler/logs';
   process.env.MINIFLARE_REGISTRY_PATH ??= '.wrangler/registry';
@@ -10,7 +10,7 @@ export default defineConfig(async ({ mode }) => {
 
   return {
     plugins: [
-      siteDetails(mode),
+      siteDetails(),
       cloudflare({
         config: {
           name: 'server',

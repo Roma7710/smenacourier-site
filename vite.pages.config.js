@@ -1,11 +1,11 @@
 import { defineConfig } from 'vite';
 import { siteDetails } from './site.config.js';
 
-export default defineConfig(({ mode }) => ({
-  plugins: [siteDetails(mode)],
+export default defineConfig({
+  plugins: [siteDetails()],
   publicDir: 'public',
   build: {
     outDir: 'dist-pages',
     emptyOutDir: true
   }
-}));
+});
