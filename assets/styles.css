@@ -2334,9 +2334,6 @@ body {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: #3d4a14;
-  box-shadow: none;
-  opacity: .28;
 }
 
 .poster-reward__overline {
@@ -2850,84 +2847,80 @@ h2 {
   right: 31px;
   width: 11px;
   height: 11px;
+  background: #3d4a14;
+  opacity: .3;
+  box-shadow: none;
 }
 
 .month-example.is-lit::before {
-  animation: lamp-ignite 1.35s ease-out forwards, lamp-pulse 2.8s ease-in-out 1.35s infinite;
+  animation: lamp-broken 2.4s linear forwards;
 }
 
-@keyframes lamp-ignite {
+@keyframes lamp-broken {
   0% {
-    opacity: .22;
+    opacity: .3;
     background: #3d4a14;
     box-shadow: none;
   }
-  7% {
-    opacity: 1;
-    background: #f6ff9a;
-    box-shadow: 0 0 10px 3px rgba(215, 255, 69, .7), 0 0 0 6px rgba(215, 255, 69, .2);
-  }
-  12% {
-    opacity: .12;
-    background: #3d4a14;
-    box-shadow: none;
-  }
-  20% {
-    opacity: .85;
-    background: #e9ff6a;
-    box-shadow: 0 0 7px 2px rgba(215, 255, 69, .45);
-  }
-  26% {
-    opacity: .1;
-    background: #3d4a14;
-    box-shadow: none;
-  }
-  40% {
-    opacity: 1;
+  6% {
+    opacity: .9;
     background: #d7ff45;
-    box-shadow: 0 0 14px 4px rgba(215, 255, 69, .65), 0 0 0 7px rgba(215, 255, 69, .16);
+    box-shadow: 0 0 6px 1px rgba(215, 255, 69, .35);
   }
-  48% {
-    opacity: .28;
-    background: #6a7a20;
-    box-shadow: 0 0 3px 1px rgba(215, 255, 69, .18);
+  9%, 30% {
+    opacity: .3;
+    background: #3d4a14;
+    box-shadow: none;
+  }
+  33% {
+    opacity: .7;
+    background: #c4e83e;
+    box-shadow: 0 0 4px 1px rgba(215, 255, 69, .25);
+  }
+  35% {
+    opacity: .3;
+    background: #3d4a14;
+    box-shadow: none;
+  }
+  37% {
+    opacity: .8;
+    background: #cff042;
+    box-shadow: 0 0 5px 1px rgba(215, 255, 69, .3);
+  }
+  40%, 58% {
+    opacity: .35;
+    background: #4a5a18;
+    box-shadow: none;
   }
   62% {
-    opacity: 1;
+    opacity: .85;
     background: #d7ff45;
-    box-shadow: 0 0 16px 5px rgba(215, 255, 69, .6), 0 0 0 8px rgba(215, 255, 69, .18);
+    box-shadow: 0 0 7px 1px rgba(215, 255, 69, .32);
+  }
+  66% {
+    opacity: .55;
+    background: #9fbd34;
+    box-shadow: 0 0 3px 1px rgba(215, 255, 69, .15);
   }
   72% {
-    opacity: .55;
-    background: #b8d93a;
-    box-shadow: 0 0 6px 2px rgba(215, 255, 69, .28);
+    opacity: .85;
+    background: #d7ff45;
+    box-shadow: 0 0 7px 2px rgba(215, 255, 69, .3);
   }
   100% {
-    opacity: 1;
+    opacity: .85;
     background: #d7ff45;
-    box-shadow: 0 0 12px 4px rgba(215, 255, 69, .5), 0 0 0 6px rgba(215, 255, 69, .14);
-  }
-}
-
-@keyframes lamp-pulse {
-  0%, 100% {
-    background: #d7ff45;
-    box-shadow: 0 0 8px 3px rgba(215, 255, 69, .4), 0 0 0 5px rgba(215, 255, 69, .1);
-  }
-  50% {
-    background: #e8ff6e;
-    box-shadow: 0 0 18px 6px rgba(215, 255, 69, .58), 0 0 0 8px rgba(215, 255, 69, .18);
+    box-shadow: 0 0 7px 2px rgba(215, 255, 69, .3), 0 0 0 4px rgba(215, 255, 69, .07);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .poster-reward::before,
   .month-example::before,
   .month-example.is-lit::before {
-    opacity: 1;
-    background: var(--accent);
-    box-shadow: 0 0 0 5px rgba(215, 255, 69, .08);
     animation: none;
+    opacity: .85;
+    background: #d7ff45;
+    box-shadow: 0 0 7px 2px rgba(215, 255, 69, .3), 0 0 0 4px rgba(215, 255, 69, .07);
   }
 }
 
