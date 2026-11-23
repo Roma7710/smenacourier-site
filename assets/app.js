@@ -158,6 +158,16 @@ if (monthCard) {
 const toTop = $('up');
 const partnerSection = $('form');
 const mobileActions = $('mobile-actions');
+const observeMonthCard = monthCard && 'IntersectionObserver' in window;
+
+if (observeMonthCard) {
+  const mobileBarObserver = new IntersectionObserver(([entry]) => {
+    const passed = !entry.isIntersecting && entry.boundingClientRect.bottom <= 0;
+    mobileActions.classList.toggle('is-hidden', !passed);
+  }, { threshold: 0 });
+  mobileBarObserver.observe(monthCard);
+}
+
 toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 function updateFixedControls() {
@@ -168,6 +178,10 @@ function updateFixedControls() {
   toTop.hidden = !showTop;
   toTop.classList.toggle('show', showTop);
   mobileActions.hidden = nearPartnerSection;
+  if (!observeMonthCard) {
+    const cardBottom = monthCard?.getBoundingClientRect().bottom ?? 0;
+    mobileActions.classList.toggle('is-hidden', cardBottom > 0);
+  }
 }
 
 addEventListener('scroll', updateFixedControls, { passive: true });
