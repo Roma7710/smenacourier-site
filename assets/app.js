@@ -135,6 +135,26 @@ if ('IntersectionObserver' in window) {
   revealItems.forEach(item => item.classList.add('in'));
 }
 
+const monthCard = document.querySelector('.month-example');
+if (monthCard) {
+  const lampOn = () => monthCard.classList.add('is-lit');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    lampOn();
+  } else {
+    const threshold = 0.4;
+    const lampObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= threshold) {
+          lampOn();
+          lampObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold });
+    lampObserver.observe(monthCard);
+  }
+}
+
 const toTop = $('up');
 const partnerSection = $('form');
 const mobileActions = $('mobile-actions');
